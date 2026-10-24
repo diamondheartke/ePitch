@@ -1,7 +1,7 @@
 """
 ePitch - Core Django Settings (core/settings.py)
-Configured for Android-First Responsive Web, MariaDB/MySQL Database Engine,
-and Native Static Asset Serving ({% load static %}).
+Configured for Android-First Responsive Web, MariaDB/MySQL Database Engine
+(with seamless SQLite dev fallback), and Native Static Asset Serving ({% load static %}).
 """
 
 import os
@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # ePitch Custom Apps
-    'apps.engine',
     'apps.home',
 ]
 
@@ -59,21 +58,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 ASGI_APPLICATION = 'core.asgi.application'
 
-# Database Configuration (MariaDB / MySQL Architecture)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE', 'epitch_db'),
-        'USER': os.environ.get('MYSQL_USER', 'epitch_user'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'epitch_pass'),
-        'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
-        'PORT': os.environ.get('MYSQL_PORT', '3306'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
-        },
+# Database Configuration (MySQL / MariaDB with automatic local SQLite fallback)
+USE_MYSQL = os.environ.get('USE_MYSQL', 'False').lower() in ('true', '1', 'yes')
+
+if USE_MYSQL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('MYSQL_DATABASE', 'epitch_db'),
+            'USER': os.environ.get('MYSQL_USER', 'epitch_user'),
+            'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'epitch_pass'),
+            'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
+            'PORT': os.environ.get('MYSQL_PORT', '3306'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Static files (CSS, JavaScript, Images, Audio, Video)
 STATIC_URL = '/static/'

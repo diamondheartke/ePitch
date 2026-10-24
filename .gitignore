@@ -6,3 +6,15 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+*.sqlite3
+staticfiles/
+
+# Test & Playwright artifacts
+.playwright-cli/

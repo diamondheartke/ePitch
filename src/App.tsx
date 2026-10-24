@@ -15,6 +15,10 @@ import { LiveSpectatorPanel } from './components/LiveSpectatorPanel';
 import { TournamentTreePanel } from './components/TournamentTreePanel';
 import { DjangoCodeViewerModal } from './components/DjangoCodeViewerModal';
 import { ArchitectureModal } from './components/ArchitectureModal';
+import { RecentMatch } from './types/recentMatches';
+import { initialRecentMatches } from './data/recentMatchesData';
+import { RecentMatchesSection } from './components/RecentMatchesSection';
+import { HighlightReelModal } from './components/HighlightReelModal';
 import { Sparkles, Shield, Radio, Trophy, Swords, Zap, CheckCircle, Volume2, ArrowRight } from 'lucide-react';
 
 export default function App() {
@@ -24,6 +28,15 @@ export default function App() {
   const [isDjangoModalOpen, setIsDjangoModalOpen] = useState<boolean>(false);
   const [isArchitectureModalOpen, setIsArchitectureModalOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [recentMatches] = useState<RecentMatch[]>(initialRecentMatches);
+  const [selectedReplayMatch, setSelectedReplayMatch] = useState<RecentMatch | null>(null);
+  const [isReplayModalOpen, setIsReplayModalOpen] = useState<boolean>(false);
+
+  const handleOpenReplay = (match: RecentMatch) => {
+    playSoundEffect('click');
+    setSelectedReplayMatch(match);
+    setIsReplayModalOpen(true);
+  };
 
   // Synthesize stadium whistle / audio beep via Web Audio API so it plays without missing files
   const playSoundEffect = (type: 'whistle' | 'click' | 'goal') => {
@@ -137,6 +150,12 @@ export default function App() {
                 else if (modeId === 'tournaments') setActiveTab('tournaments');
                 else if (modeId === 'spectator') setActiveTab('spectator');
               }}
+            />
+
+            {/* Recent Matches Section (Last 5 Matches & Replay Highlight Reels) */}
+            <RecentMatchesSection
+              matches={recentMatches}
+              onSelectMatchForReplay={handleOpenReplay}
             />
 
             {/* Quick Squad & Live WebRTC Arena Split Section */}
@@ -309,6 +328,13 @@ export default function App() {
 
       {/* Android-Optimized Bottom Navigation */}
       <EPitchBottomNav activeTab={activeTab} onTabChange={setActiveTab} />
+
+      {/* Simulated Highlight Reel Modal */}
+      <HighlightReelModal
+        match={selectedReplayMatch}
+        isOpen={isReplayModalOpen}
+        onClose={() => setIsReplayModalOpen(false)}
+      />
 
       {/* Django Backend Source & Templates Code Modal */}
       <DjangoCodeViewerModal

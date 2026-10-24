@@ -1,0 +1,40 @@
+{% load static %}
+<!-- Recent Matches Component (templates/home/components/recent_matches.html) -->
+<section class="epitch-recent-matches space-y-4">
+  <div class="flex items-center justify-between px-1">
+    <div class="flex items-center gap-2">
+      <span class="text-base text-[#00ff87]">⏱️</span>
+      <h2 class="font-display font-black text-lg sm:text-xl text-white uppercase tracking-wider">
+        Recent Matches
+      </h2>
+    </div>
+    <span class="text-xs font-mono text-slate-400">Last 5 Matches</span>
+  </div>
+
+  <div class="space-y-3">
+    {% for match in recent_matches %}
+      <div class="glass-card rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-[#00ff87]/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <!-- Opponent & Result Details -->
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl border flex flex-col items-center justify-center font-mono font-black text-xs {% if match.result == 'win' %}bg-emerald-950/80 border-emerald-500/50 text-[#00ff87]{% elif match.result == 'loss' %}bg-rose-950/80 border-rose-500/50 text-rose-400{% else %}bg-amber-950/80 border-amber-500/50 text-amber-400{% endif %}">
+            {{ match.result|upper|slice:":1" }}
+          </div>
+          <div>
+            <div class="font-display font-black text-base text-white">vs {{ match.opponent_name }}</div>
+            <div class="text-xs text-slate-400 font-mono">{{ match.competition }} • {{ match.timestamp }}</div>
+          </div>
+        </div>
+
+        <!-- Score & Replay Trigger -->
+        <div class="flex items-center gap-4">
+          <div class="bg-black/60 px-3.5 py-1.5 rounded-xl border border-slate-800 font-mono text-base font-black">
+            <span class="text-[#00ff87]">{{ match.user_score }}</span> - <span class="text-slate-300">{{ match.opponent_score }}</span>
+          </div>
+          <button class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-[#00ff87] hover:text-black text-[#00ff87] border border-[#00ff87]/30 text-xs font-display font-extrabold uppercase tracking-wider transition-all">
+            Replay
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
