@@ -1,0 +1,43 @@
+/* Glassmorphism Design System (static/css/glassmorphism.css) */
+:root {
+  --epitch-emerald: #00ff87;
+  --epitch-cyan: #00e5ff;
+  --epitch-crimson: #ff0055;
+  --epitch-gold: #f59e0b;
+  --epitch-void: #070a10;
+  --epitch-glass-bg: rgba(15, 23, 42, 0.65);
+  --epitch-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: var(--epitch-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--epitch-glass-border);
+}
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(7, 10, 16, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-panel-nav {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.neon-border-green {
+  border-color: rgba(0, 255, 135, 0.4);
+  box-shadow: 0 0 15px -3px rgba(0, 255, 135, 0.2);
+}
+
+.neon-border-cyan {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 15px -3px rgba(0, 229, 255, 0.2);
+}
+
+.neon-glow-text {
+  text-shadow: 0 0 12px rgba(0, 255, 135, 0.6);
+}

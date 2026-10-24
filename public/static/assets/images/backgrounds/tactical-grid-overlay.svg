@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 600">
+  <defs>
+    <pattern id="tacticalGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 229, 255, 0.08)" stroke-width="1"/>
+      <circle cx="0" cy="0" r="1.5" fill="rgba(0, 255, 135, 0.25)" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#tacticalGrid)" />
+  <!-- Pitch markings outline -->
+  <rect x="50" y="40" width="700" height="520" fill="none" stroke="rgba(0, 255, 135, 0.15)" stroke-width="2" rx="4"/>
+  <line x1="400" y1="40" x2="400" y2="560" stroke="rgba(0, 255, 135, 0.15)" stroke-width="2" />
+  <circle cx="400" cy="300" r="70" fill="none" stroke="rgba(0, 255, 135, 0.15)" stroke-width="2" />
+  <circle cx="400" cy="300" r="3" fill="rgba(0, 255, 135, 0.4)" />
+</svg>

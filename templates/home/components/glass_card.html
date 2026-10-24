@@ -1,0 +1,9 @@
+<!-- Reusable Glass Card Component (templates/home/components/glass_card.html) -->
+<div class="epitch-glass-card rounded-2xl p-4 sm:p-5 backdrop-blur-xl bg-slate-900/65 border border-white/10 shadow-2xl transition-all duration-200 hover:border-[#00ff87]/40 relative overflow-hidden group">
+  <!-- Glowing Corner Accent -->
+  <div class="absolute -top-12 -right-12 w-28 h-28 bg-[#00ff87]/10 rounded-full blur-2xl pointer-events-none transition-opacity group-hover:opacity-100 opacity-60"></div>
+  
+  <div class="relative z-10">
+    {{ card_content }}
+  </div>
+</div>

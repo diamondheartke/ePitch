@@ -1,0 +1,78 @@
+{% load static %}
+<!-- Top Bar Component (templates/home/components/top_bar.html) -->
+<header class="epitch-top-bar glass-panel-nav sticky top-0 z-50 w-full px-4 py-2.5 border-b border-white/10 backdrop-blur-xl bg-[#070a10]/85">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+    
+    <!-- Brand Logo Section -->
+    <div class="flex items-center gap-3">
+      <a href="{% url 'home:index' %}" class="flex items-center gap-2.5 group">
+        <img 
+          src="{% static 'assets/images/logos/epitch-logo.svg' %}" 
+          alt="ePitch Tactical Arena" 
+          class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+          onerror="this.onerror=null; this.src='{% static 'assets/images/logos/epitch-badge-icon.svg' %}';"
+        />
+      </a>
+      <span class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase bg-[#00ff87]/15 text-[#00ff87] border border-[#00ff87]/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#00ff87] animate-pulse"></span>
+        LIVE ARENA
+      </span>
+    </div>
+
+    <!-- Center Currency Deck (Android Touch Scaled) -->
+    <div class="flex items-center gap-2 sm:gap-3 text-xs font-mono">
+      <!-- Energy Meter -->
+      <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl glass-card bg-slate-900/60 border border-white/10" title="Matchday Energy">
+        <span class="text-[#00e5ff] font-bold">⚡</span>
+        <span class="text-white font-bold text-xs">{{ user_profile.energy }}/{{ user_profile.max_energy }}</span>
+      </div>
+
+      <!-- GP Currency -->
+      <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl glass-card bg-slate-900/60 border border-white/10" title="GP Coins">
+        <span class="w-4 h-4 rounded-full bg-amber-400 text-black text-[10px] font-extrabold flex items-center justify-center">G</span>
+        <span class="text-amber-300 font-bold text-xs">{{ user_profile.gp_currency }}</span>
+      </div>
+
+      <!-- ePitch Points -->
+      <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl glass-card bg-slate-900/60 border border-white/10" title="ePitch Points">
+        <span class="text-[#00ff87] font-bold">◈</span>
+        <span class="text-[#00ff87] font-bold text-xs">{{ user_profile.ep_points }} EP</span>
+      </div>
+    </div>
+
+    <!-- Right Profile & Auth Placeholder Hook -->
+    <div class="flex items-center gap-2.5">
+      {% if user_profile.is_guest %}
+        <!-- Guest State Placeholder: Plugs directly into Auth module -->
+        <div class="flex items-center gap-2">
+          <span class="hidden md:inline-block text-xs text-slate-400 font-medium">Guest Mode</span>
+          <button 
+            type="button"
+            id="auth-login-trigger" 
+            class="px-3 py-1.5 rounded-xl bg-[#00ff87] text-black font-display font-bold text-xs uppercase tracking-wider hover:bg-emerald-300 transition-all shadow-lg shadow-[#00ff87]/20 active:scale-95 cursor-pointer"
+          >
+            Sign In / Join
+          </button>
+        </div>
+      {% else %}
+        <!-- Authenticated State -->
+        <div class="flex items-center gap-2.5">
+          <div class="relative">
+            <img 
+              src="{{ user_profile.avatar_url }}" 
+              alt="{{ user_profile.username }}" 
+              class="w-8 h-8 rounded-xl object-cover border-2 border-[#00ff87]"
+              onerror="this.onerror=null; this.src='{% static 'assets/images/logos/epitch-badge-icon.svg' %}';"
+            />
+            <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#00ff87] border-2 border-[#070a10]"></span>
+          </div>
+          <div class="hidden lg:block text-left">
+            <div class="text-xs font-display font-bold text-white leading-tight">{{ user_profile.username }}</div>
+            <div class="text-[10px] font-mono text-[#00ff87]">{{ user_profile.division }} • {{ user_profile.efootball_id }}</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</header>

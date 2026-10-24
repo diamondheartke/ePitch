@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>{% block title %}ePitch — Tactical Stadium & Home Dashboard{% endblock %}</title>
+  <meta name="description" content="ePitch — High-performance football management, tactical simulation, and esports arena.">
+  <meta name="theme-color" content="#070a10">
+  
+  <!-- Favicon / Badge -->
+  <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/logos/epitch-badge-icon.svg' %}">
+  
+  <!-- Google Fonts: Chakra Petch, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/glassmorphism.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mobile-android.css' %}">
+  
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#070a10] text-slate-100 antialiased min-h-screen selection:bg-[#00ff87] selection:text-black pb-20 sm:pb-8">
+  
+  <!-- Tactical Stadium Dark Background with Grid Overlay -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a121e]/80 via-[#070a10]/90 to-[#05070c] z-10"></div>
+    <div class="absolute inset-0 epitch-tactical-grid opacity-30 z-20"></div>
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-[#00ff87]/15 to-transparent rounded-full blur-3xl z-10"></div>
+  </div>
+
+  <div class="relative z-30 flex flex-col min-h-screen">
+    <!-- Top Navigation Bar -->
+    {% include 'home/components/top_bar.html' %}
+
+    <!-- Main View Content -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-5">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Android-Optimized Bottom Navigation -->
+    {% include 'home/components/bottom_nav.html' %}
+  </div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="{% static 'js/core/state.js' %}"></script>
+  <script src="{% static 'js/core/api-client.js' %}"></script>
+  <script src="{% static 'js/modules/device-detector.js' %}"></script>
+  <script src="{% static 'js/modules/asset-loader.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

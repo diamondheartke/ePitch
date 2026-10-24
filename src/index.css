@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #080c12;
+    color: #e2e8f0;
+  }
+}
+
+.font-display {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Pitch Turf subtle grid */
+.pitch-bg {
+  background: 
+    linear-gradient(180deg, rgba(8, 14, 22, 0.94) 0%, rgba(6, 10, 16, 0.98) 100%),
+    radial-gradient(circle at 50% 0%, rgba(0, 255, 135, 0.08) 0%, transparent 60%);
+}
+
+.pitch-lines {
+  background-image: 
+    linear-gradient(rgba(0, 255, 135, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 135, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Tactical Pitch Board */
+.tactical-pitch {
+  background: 
+    linear-gradient(180deg, #0e3d23 0%, #092b18 50%, #072213 100%);
+  position: relative;
+}
+
+.glow-pitch-green {
+  box-shadow: 0 0 20px -3px rgba(0, 255, 135, 0.25);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px -3px rgba(0, 229, 255, 0.25);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1118;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF87;
+}

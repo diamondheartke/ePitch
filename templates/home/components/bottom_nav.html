@@ -1,0 +1,38 @@
+{% load static %}
+<!-- Android-Optimized Bottom Navigation (templates/home/components/bottom_nav.html) -->
+<nav class="epitch-bottom-nav fixed bottom-0 left-0 right-0 z-50 px-2 py-1.5 backdrop-blur-2xl bg-[#070a10]/90 border-t border-white/10 safe-area-bottom">
+  <div class="max-w-md mx-auto grid grid-cols-5 items-center gap-1 text-center">
+    
+    <!-- Home Tab -->
+    <a href="{% url 'home:index' %}" class="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all group {% if active_tab == 'home' %}text-[#00ff87] bg-white/5 font-bold{% else %}text-slate-400 hover:text-slate-200{% endif %}">
+      <span class="text-lg leading-none transition-transform group-hover:scale-110">🏠</span>
+      <span class="text-[10px] font-display uppercase tracking-wider mt-0.5">Home</span>
+    </a>
+
+    <!-- Matchday Arena -->
+    <a href="#matchday" class="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all group text-slate-400 hover:text-white">
+      <span class="text-lg leading-none transition-transform group-hover:scale-110">⚽</span>
+      <span class="text-[10px] font-display uppercase tracking-wider mt-0.5">Arena</span>
+    </a>
+
+    <!-- Squad Tactics (Hero Center Action) -->
+    <a href="#squad" class="flex flex-col items-center justify-center -translate-y-2 py-1 px-1 rounded-2xl bg-gradient-to-tr from-[#00ff87] to-[#00e5ff] text-black shadow-lg shadow-[#00ff87]/30 transition-transform active:scale-95">
+      <span class="text-xl leading-none">🛡️</span>
+      <span class="text-[9px] font-display font-extrabold uppercase tracking-tighter mt-0.5 text-black">Tactics</span>
+    </a>
+
+    <!-- Tournaments -->
+    <a href="#tournaments" class="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all group text-slate-400 hover:text-white">
+      <span class="text-lg leading-none transition-transform group-hover:scale-110">🏆</span>
+      <span class="text-[10px] font-display uppercase tracking-wider mt-0.5">Cups</span>
+    </a>
+
+    <!-- Live Spectator -->
+    <a href="#spectator" class="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all group text-slate-400 hover:text-white relative">
+      <span class="text-lg leading-none transition-transform group-hover:scale-110">📡</span>
+      <span class="text-[10px] font-display uppercase tracking-wider mt-0.5">Live</span>
+      <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-[#ff0055] animate-ping"></span>
+    </a>
+
+  </div>
+</nav>

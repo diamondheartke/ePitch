@@ -1,0 +1,6 @@
+{
+  "name": "eFootball Social & Tournament Hub",
+  "description": "Next-gen eFootball community network featuring 15-60s highlight clips, interactive squad showcases, platform filters (#Mobile, #PSN, #Xbox, #PC), real-time tournament brackets, and native in-app WebRTC spectator lobbies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

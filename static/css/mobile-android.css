@@ -1,0 +1,37 @@
+/* Android-First Mobile Optimization (static/css/mobile-android.css) */
+
+/* Safe Area Inset Support for modern Android navigation bars */
+.safe-area-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+.safe-area-top {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+/* Touch-first Target Sizing: Min 48px on mobile */
+@media (max-width: 640px) {
+  button, a.touch-target {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Eliminate tap highlight grey box on mobile chrome */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hardware accelerated transitions for mobile browsers */
+.epitch-glass-card, .glass-card, .epitch-bottom-nav {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Tactical Pitch Grid pattern */
+.epitch-tactical-grid {
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
